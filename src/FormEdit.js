@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import axios from 'axios';
 
 class FormEdit extends Component {
  constructor(props) {
@@ -13,17 +14,13 @@ class FormEdit extends Component {
  }
 
  onSubmit = (event) => {
-   let results;
    event.preventDefault();
-   fetch('http://ctp-zip-api.herokuapp.com/zip/'+this.state.zip)
-     .then(function(response){
-       return response.json();
+   axios.get('http://ctp-zip-api.herokuapp.com/zip/'+this.state.zip)
+     .then(response => {
+       let results = response.data;
+       this.setState({results})
      })
-     .then(function(json){
-       results = JSON.parse(JSON.stringify(json));
-       console.log(results);
-     })
-     .catch(function(err) {
+     .catch(err => {
        console.log(err);
      });
  }
@@ -36,7 +33,6 @@ class FormEdit extends Component {
 
 
 render(){
-  {console.log(this.state.results)}
   return(
     <form>
       Zip Code:
