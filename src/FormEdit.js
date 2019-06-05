@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import Results from './Results';
 import axios from 'axios';
 
 class FormEdit extends Component {
@@ -6,7 +7,7 @@ class FormEdit extends Component {
    super(props);
    this.state = {
      zip: '',
-     results: []
+     results: [],
    };
 
    this.onSubmit = this.onSubmit.bind(this);
@@ -32,15 +33,34 @@ class FormEdit extends Component {
  }
 
 
-render(){
-  return(
-    <form>
-      Zip Code:
-      <input type="text" onChange={this.onModZip}></input>
-      <button onClick={this.onSubmit}>Submit</button>
-    </form>
-  );
- }
+  render(){
+    let res = []
+    for (var i = 0; i < this.state.results.length; i++) {
+      console.log(this.state.results[i]);
+      let currState = this.state.results[i];
+      res.push(
+                <Results
+                  locationText={currState.LocationText}
+                  state={currState.State}
+                  lat={currState.Lat}
+                  long={currState.Long}
+                  population={currState.EstimatedPopulation}
+                  wages={currState.TotalWages}
+                />
+              );
+    }
+
+    return(
+      <div>
+        <form>
+          Zip Code:
+          <input type="text" onChange={this.onModZip}></input>
+          <button onClick={this.onSubmit}>Submit</button>
+        </form>
+        {res}
+      </div>
+    );
+   }
 };
 
 export default FormEdit;
