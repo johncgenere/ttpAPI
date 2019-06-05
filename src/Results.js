@@ -16,13 +16,42 @@ class Results extends Component{
 
   render(){
     return(
-      <div>
-        <h1>{this.state.locationText}</h1>
-        <h1>{this.state.state}</h1>
-        <h1>{this.state.lat}</h1>
-        <h1>{this.state.long}</h1>
-        <h1>{this.state.population}</h1>
-        <h1>{this.state.wages}</h1>
+      <div className="ui card">
+        <div className="content">
+          <div className="header">{this.state.locationText}</div>
+        </div>
+        <div className="content">
+          <div className="ui small feed">
+            <div className="event">
+              <div className="content">
+                <div className="summary">
+                   State: {this.state.state}
+                </div>
+              </div>
+            </div>
+            <div className="event">
+              <div className="content">
+                <div className="summary">
+                   Location: ({this.state.lat}, {this.state.long})
+                </div>
+              </div>
+            </div>
+            <div className="event">
+              <div className="content">
+                <div className="summary">
+                   Population(estimated): {this.state.population}
+                </div>
+              </div>
+            </div>
+            <div className="event">
+              <div className="content">
+                <div className="summary">
+                   Total Wages: {this.state.wages}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
