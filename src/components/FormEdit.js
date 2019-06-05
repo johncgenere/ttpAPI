@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Results from './Results';
 import axios from 'axios';
-import './FormEdit.css'
+import '../styling/FormEdit.css'
 
 class FormEdit extends Component {
  constructor(props) {
